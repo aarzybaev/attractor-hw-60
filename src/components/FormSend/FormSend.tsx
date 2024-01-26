@@ -4,7 +4,8 @@ import {FormMessage} from '../../type';
 interface Props {
   onSubmit: (message: FormMessage) => void;
 }
-const FormSend : React.FC<Props> = ({onSubmit}) => {
+
+const FormSend: React.FC<Props> = ({onSubmit}) => {
   const [formData, setFormData] = useState<FormMessage>({
     author: 'Author',
     message: ''

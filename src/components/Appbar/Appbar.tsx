@@ -1,4 +1,3 @@
-
 const Appbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
