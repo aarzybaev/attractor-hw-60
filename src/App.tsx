@@ -4,6 +4,9 @@ import Appbar from './components/Appbar/Appbar';
 import FormSend from './components/FormSend/FormSend';
 import MessageItem from './components/MessageItem/MessageItem';
 import {FormMessage, Message} from './type';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+dayjs.extend(advancedFormat);
 
 function App() {
 
@@ -11,6 +14,7 @@ function App() {
 
   let URL = 'http://146.185.154.90:8000/messages/?datetime=';
   let lastDate: string = '';
+
   const getMessages = async () => {
     const fetchData = async () => {
       const response = await fetch(URL);
@@ -22,7 +26,10 @@ function App() {
         if (messagesLength) {
           lastDate = parsedMessages[messagesLength - 1].datetime;
           URL = 'http://146.185.154.90:8000/messages/?datetime=' + lastDate;
-          setMessages(prevState => [...prevState, ...parsedMessages]);
+          setMessages(
+            prevState => [...prevState, ...parsedMessages]
+            .sort((a, b) => dayjs(a.datetime).format('X') < dayjs(b.datetime).format('X') ? 1 :-1)
+          );
         }
 
       }
@@ -78,9 +85,7 @@ function App() {
               <div className="row justify-content-center">
                 <div className="col-5">
                   {
-                  messages
-                  .reverse()
-                  .map(item => {
+                  messages.map(item => {
                     return (
                       <MessageItem
                         key={Math.random().toString()}
