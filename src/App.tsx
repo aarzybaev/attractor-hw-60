@@ -22,7 +22,7 @@ function App() {
         if (messagesLength) {
           lastDate = parsedMessages[messagesLength - 1].datetime;
           URL = 'http://146.185.154.90:8000/messages/?datetime=' + lastDate;
-          setMessages(prevState => [...parsedMessages, ...prevState]);
+          setMessages(prevState => [...prevState, ...parsedMessages]);
         }
 
       }
@@ -77,7 +77,10 @@ function App() {
             <div className="col">
               <div className="row justify-content-center">
                 <div className="col-5">
-                  {messages.map(item => {
+                  {
+                  messages
+                  .reverse()
+                  .map(item => {
                     return (
                       <MessageItem
                         key={Math.random().toString()}
