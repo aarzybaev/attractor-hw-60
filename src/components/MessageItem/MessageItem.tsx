@@ -16,7 +16,7 @@ const MessageItem: React.FC<Props> = ({
     <div className="card mb-2">
       <div className="card-header">
         <div className="d-flex justify-content-between">
-          <span>{author}</span><span>{dayjs(date).format('DD-MMM, YYYY HH:MM')}</span>
+          <span>{author}</span><span>{dayjs(date).format('DD-MMM, YYYY HH:mm')}</span>
         </div>
       </div>
       <div className="card-body">
