@@ -16,7 +16,7 @@ function App() {
   let lastDate: string = '';
 
   const getMessages = async () => {
-    const fetchData = async () => {
+ 
       const response = await fetch(URL);
 
       if (response.ok) {
@@ -34,13 +34,11 @@ function App() {
 
       }
 
-    };
-    fetchData().catch(e => console.error(e));
   };
 
   useEffect(() => {
     setInterval(() => {
-      void getMessages();
+      void getMessages().catch(e => console.error(e));;
     }, 5000);
 
   }, []);
@@ -55,8 +53,8 @@ function App() {
       method: 'post',
       body: data,
     });
-
-    if (response.status !== 200) {
+    
+    if (!response.ok) {
       console.log('Something went wrong..');
     }
 
