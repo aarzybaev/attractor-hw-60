@@ -61,7 +61,7 @@ function App() {
   };
 
   const formHandler = (message: FormMessage) => {
-    void sendMessage(message);
+    void sendMessage(message).catch(e => console.error(e));
   };
 
   return (
